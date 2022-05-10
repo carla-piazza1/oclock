@@ -1,0 +1,24 @@
+:root {
+
+    --Transparent-: rgba(255, 255, 255, 0);
+    --LightShadow-: rgba(0, 0, 0, 0.253);
+    --Shadow-: rgba(0, 0, 0, 0.39);
+    --DarkShadow-: rgba(0, 0, 0, 0.466);
+    --WhiteShadow-: #ffffffa4;
+    --White-: #FFFFFF;
+    --Black-: #000000;
+    --DarkGrey-: #202020;
+    --Grey-: #757575;
+    --Grey2-: #9c9c9cf3;
+    --Grey3-: #fffffff3;
+
+    background-image: url(https://img3.wallspic.com/crops/0/2/3/1/81320/81320-equipement-reveils-horloge-montre_de_poche-cercle-1920x1124.jpg);
+    --Button-: #0022ff;
+    --Color1-: #3b5998;
+    --Color2-: #9c9c9cf3;
+    --Color3-: #ea4c89;
+    --Color4-: #d8d7d7;
+    --Error-: rgb(187, 8, 8);
+    --Success-: #65F695;
+
+}
