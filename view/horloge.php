@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../public/css/horloge.css">
     <script type="text/javascript" src="../public/js/horloge.js"></script>
     
+    
     <title>Horloge</title>
 </head>
 <body>

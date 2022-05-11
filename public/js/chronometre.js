@@ -1,51 +1,79 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    window.onload = function(){
-        var seconds = 00;
-        var tens = 00;
-        var OutputSeconds = document.getElementById("second");
-        var OutputTens = document.getElementById("tens");
-        var buttonStart = document.getElementById("btn-start");
-        var buttonStop = document.getElementById("btn-stop");
-        var buttonReset = document.getElementById("btn-reset");
-        var Interval;
+let chrono = document.getElementById("chrono");
+let resetBtn = document.getElementById("reset");
+let stopBtn = document.getElementById("stop");
+let startBtn = document.getElementById("start");
 
-        buttonStart.addEventListener('click', () => {
-            clearInterval(Interval);
-            Interval = setInterval(startTimer, 10);  // millisecond 10 = 0.01 second
-        });
+let heures = 0;
+let minutes = 0;
+let secondes = 0;
 
-        buttonStop.addEventListener('click', () => {
-            clearInterval(Interval);
-        });
+let timeout;
 
-        buttonReset.addEventListener('click', () => {
-            clearInterval(Interval);
-            tens = "00";
-            seconds = "00";
-            OutputSeconds.innerHTML = seconds;
-            OutputTens.innerHTML = tens;
-        });
+let estArrete = true;
 
-        function startTimer(){
-            tens++;
-            if(tens <= 9){
-                OutputTens.innerHTML = "0" + tens;
-            }
+const demarrer = () => {
+  if (estArrete) {
+    estArrete = false;
+    defilerTemps();
+  }
+};
 
-            if(tens > 9){
-                OutputTens.innerHTML = tens;
-            }
+const arreter = () => {
+  if (!estArrete) {
+    estArrete = true;
+    clearTimeout(timeout);
+  }
+};
 
-            if(tens > 99){
-                seconds++;
-                OutputSeconds.innerHTML = "0" + seconds;
-                tens = 0;
-                OutputTens.innerHTML = "0" + 0;
-            }
+const defilerTemps = () => {
+  if (estArrete) return;
 
-            if(seconds > 9){
-                OutputSeconds.innerHTML = seconds;
-            }
-        }
-    }
+  secondes = parseInt(secondes);
+  minutes = parseInt(minutes);
+  heures = parseInt(heures);
+
+  secondes++;
+
+  if (secondes == 60) {
+    minutes++;
+    secondes = 0;
+  }
+
+  if (minutes == 60) {
+    heures++;
+    minutes = 0;
+  }
+
+  //   affichage
+  if (secondes < 10) {
+    secondes = "0" + secondes;
+  }
+
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+
+  if (heures < 10) {
+    heures = "0" + heures;
+  }
+
+  chrono.textContent = `${heures}:${minutes}:${secondes}`;
+
+  timeout = setTimeout(defilerTemps, 1000);
+};
+
+const reset = () => {
+  chrono.textContent = "00:00:00";
+  estArrete = true;
+  heures = 0;
+  minutes = 0;
+  secondes = 0;
+  clearTimeout(timeout);
+};
+
+startBtn.addEventListener("click", demarrer);
+stopBtn.addEventListener("click", arreter);
+resetBtn.addEventListener("click", reset);
+
 })
